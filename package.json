@@ -1,0 +1,30 @@
+{
+  "name": "wirestork-next",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "15.3.6",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "next-auth": "^4.24.11",
+    "stripe": "^16.0.0",
+    "@stripe/stripe-js": "^4.0.0",
+    "next-mdx-remote": "^5.0.0",
+    "gray-matter": "^4.0.3",
+    "clsx": "^2.1.1"
+  },
+  "devDependencies": {
+    "typescript": "^5",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@tailwindcss/postcss": "^4",
+    "tailwindcss": "^4"
+  }
+}
