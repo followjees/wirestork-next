@@ -50,9 +50,7 @@ export default function Footer() {
             <Link href="/online-lawyer-consultation" className="btn btn-white">
               Talk to a Lawyer
             </Link>
-            <Link href="/travel-ban-uae-check" className="btn" style={{
-              background: "rgba(255,255,255,0.15)", color: "white", border: "1px solid rgba(255,255,255,0.3)"
-            }}>
+            <Link href="/travel-ban-uae-check" className="btn footer-ghost-btn">
               Check Travel Ban →
             </Link>
           </div>
@@ -85,13 +83,7 @@ export default function Footer() {
               Services
             </div>
             {services.map((s) => (
-              <Link key={s.href} href={s.href} style={{
-                display: "block", color: "rgba(255,255,255,0.65)", fontSize: 14,
-                textDecoration: "none", marginBottom: 10, transition: "color 0.15s"
-              }}
-                onMouseEnter={e => (e.currentTarget.style.color = "white")}
-                onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.65)")}
-              >{s.label}</Link>
+              <Link key={s.href} href={s.href} className="footer-link">{s.label}</Link>
             ))}
           </div>
 
@@ -101,13 +93,7 @@ export default function Footer() {
               Company
             </div>
             {company.map((s) => (
-              <Link key={s.href} href={s.href} style={{
-                display: "block", color: "rgba(255,255,255,0.65)", fontSize: 14,
-                textDecoration: "none", marginBottom: 10, transition: "color 0.15s"
-              }}
-                onMouseEnter={e => (e.currentTarget.style.color = "white")}
-                onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.65)")}
-              >{s.label}</Link>
+              <Link key={s.href} href={s.href} className="footer-link">{s.label}</Link>
             ))}
           </div>
 
@@ -117,13 +103,7 @@ export default function Footer() {
               Legal
             </div>
             {legal.map((s) => (
-              <Link key={s.href} href={s.href} style={{
-                display: "block", color: "rgba(255,255,255,0.65)", fontSize: 14,
-                textDecoration: "none", marginBottom: 10, transition: "color 0.15s"
-              }}
-                onMouseEnter={e => (e.currentTarget.style.color = "white")}
-                onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.65)")}
-              >{s.label}</Link>
+              <Link key={s.href} href={s.href} className="footer-link">{s.label}</Link>
             ))}
           </div>
         </div>
@@ -144,12 +124,24 @@ export default function Footer() {
       </div>
 
       <style>{`
+        .footer-link {
+          display: block;
+          color: rgba(255,255,255,0.65);
+          font-size: 14px;
+          text-decoration: none;
+          margin-bottom: 10px;
+          transition: color 0.15s;
+        }
+        .footer-link:hover { color: white; }
+        .footer-ghost-btn {
+          background: rgba(255,255,255,0.15);
+          color: white;
+          border: 1px solid rgba(255,255,255,0.3);
+        }
+        .footer-ghost-btn:hover { background: rgba(255,255,255,0.25); }
         @media (max-width: 768px) {
           footer > div > div[style*="grid"] {
             grid-template-columns: 1fr 1fr !important;
-          }
-          footer > div > div[style*="justify-content: space-between"] {
-            flex-direction: column !important;
           }
         }
       `}</style>
