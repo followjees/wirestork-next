@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import SessionProvider from "@/components/SessionProvider";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { buildOrganizationSchema } from "@/lib/wordpress/seo";
+
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://wirestork.com";
 
 export const metadata: Metadata = {
   title: {
@@ -8,7 +12,7 @@ export const metadata: Metadata = {
     template: "%s | Wirestork",
   },
   description:
-    "Simplified travel ban checks, legal consultations, background checks, and business formation across the UAE and GCC. Fast, accurate, human-verified.",
+    "Fast, accurate travel ban checks, background checks, legal consultations and more across the UAE and GCC.",
   keywords: [
     "UAE travel ban check",
     "labor ban check",
@@ -17,17 +21,21 @@ export const metadata: Metadata = {
     "background check UAE",
     "online lawyer UAE",
   ],
+  metadataBase: new URL(SITE_URL),
   openGraph: {
     siteName: "Wirestork",
     locale: "en_US",
     type: "website",
   },
+  twitter: { card: "summary_large_image" },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body>
+        <JsonLd data={buildOrganizationSchema()} />
         <SessionProvider>{children}</SessionProvider>
       </body>
     </html>
