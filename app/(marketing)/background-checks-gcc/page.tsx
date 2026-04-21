@@ -1,6 +1,7 @@
 // app/(marketing)/background-checks-gcc/page.tsx — SERVER COMPONENT
 import type { Metadata } from "next";
 import Link from "next/link";
+import BGCheckClient from "./BGCheckClient";
 
 export const metadata: Metadata = {
   title: "Background Checks Across GCC Countries | Wirestork",
@@ -191,7 +192,7 @@ export default function BackgroundChecksGCCPage() {
       </div>
 
       {/* ── HERO ─────────────────────────────────────────────────────── */}
-      <section style={{ paddingTop: 100, paddingBottom: 80, position: "relative" }}>
+      <section id="section-overview" style={{ paddingTop: 100, paddingBottom: 80, position: "relative" }}>
         <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(to right, #80808012 1px, transparent 1px), linear-gradient(to bottom, #80808012 1px, transparent 1px)", backgroundSize: "40px 40px", maskImage: "radial-gradient(ellipse 80% 60% at 50% 0%, #000 60%, transparent 100%)", pointerEvents: "none" }} />
         <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 32px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center", position: "relative" }}>
           <div>
@@ -263,7 +264,7 @@ export default function BackgroundChecksGCCPage() {
       </section>
 
       {/* ── WHAT WE CHECK ────────────────────────────────────────────── */}
-      <section style={{ borderTop: "1px solid rgba(255,255,255,0.06)", padding: "80px 32px" }}>
+      <section id="section-checks" style={{ borderTop: "1px solid rgba(255,255,255,0.06)", padding: "80px 32px" }}>
         <div style={{ maxWidth: 1280, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 52 }}>
             <p style={{ color: BLUE, fontWeight: 900, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: 14 }}>Comprehensive Coverage</p>
@@ -281,6 +282,9 @@ export default function BackgroundChecksGCCPage() {
           </div>
         </div>
       </section>
+
+      {/* ── ORDER FORM (client) ──────────────────────────────────────── */}
+      <BGCheckClient />
 
       {/* ── COUNTRY CARDS ────────────────────────────────────────────── */}
       <section id="section-countries" style={{ padding: "80px 32px", borderTop: "1px solid rgba(255,255,255,0.06)", scrollMarginTop: 80 }}>
@@ -325,7 +329,7 @@ export default function BackgroundChecksGCCPage() {
       </section>
 
       {/* ── COUNTRY-SPECIFIC INFO ────────────────────────────────────── */}
-      <section style={{ padding: "80px 32px", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+      <section id="section-regulations" style={{ padding: "80px 32px", borderTop: "1px solid rgba(255,255,255,0.06)", scrollMarginTop: 80 }}>
         <div style={{ maxWidth: 900, margin: "0 auto" }}>
           <div style={{ marginBottom: 52 }}>
             <p style={{ color: BLUE, fontWeight: 900, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: 14 }}>Regional Compliance</p>
@@ -371,7 +375,7 @@ export default function BackgroundChecksGCCPage() {
       </section>
 
       {/* ── TALENT MOBILITY RISKS ────────────────────────────────────── */}
-      <section style={{ padding: "80px 32px", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+      <section id="section-mobility" style={{ padding: "80px 32px", borderTop: "1px solid rgba(255,255,255,0.06)", scrollMarginTop: 80 }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <div style={{ marginBottom: 52 }}>
             <p style={{ color: BLUE, fontWeight: 900, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: 14 }}>Why Regional Screening Matters</p>
