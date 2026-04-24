@@ -207,9 +207,17 @@ export default function BackgroundChecksGCCPage() {
             <p style={{ fontSize: 18, color: "rgba(255,255,255,0.5)", lineHeight: 1.75, marginBottom: 12 }}>
               PDPL-Compliant Background Screening Across UAE, Saudi Arabia, Kuwait, Qatar, Oman & Bahrain.
             </p>
-            <p style={{ fontSize: 16, color: "rgba(255,255,255,0.35)", lineHeight: 1.75, marginBottom: 36 }}>
+            <p style={{ fontSize: 16, color: "rgba(255,255,255,0.35)", lineHeight: 1.75, marginBottom: 20 }}>
               If trust and safety is paramount in your business, we have you covered. Wirestork offers a suite of comprehensive background check services designed to give you peace of mind.
             </p>
+            <div style={{ display: "flex", gap: 10, marginBottom: 24, flexWrap: "wrap" }}>
+              <Link href="/background-checks-in-uae" style={{ display: "flex", alignItems: "center", gap: 8, background: "rgba(7,8,228,0.12)", border: "1px solid rgba(7,8,228,0.3)", borderRadius: 100, padding: "8px 18px", fontSize: 13, fontWeight: 700, color: "#fff", textDecoration: "none" }}>
+                🇦🇪 UAE Checks
+              </Link>
+              <Link href="/background-checks-in-saudi-arabia" style={{ display: "flex", alignItems: "center", gap: 8, background: "rgba(7,8,228,0.12)", border: "1px solid rgba(7,8,228,0.3)", borderRadius: 100, padding: "8px 18px", fontSize: 13, fontWeight: 700, color: "#fff", textDecoration: "none" }}>
+                🇸🇦 Saudi Arabia Checks
+              </Link>
+            </div>
             <div style={{ ...GLASS, padding: 28 }}>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px 24px", marginBottom: 24 }}>
                 {["Criminal background checks", "Employment verification", "Education credential checks", "Travel ban checks", "Reference checks", "Credit history checks"].map((f) => (
