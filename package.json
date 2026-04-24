@@ -9,22 +9,25 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@stripe/react-stripe-js": "^6.2.0",
+    "@stripe/stripe-js": "^4.0.0",
+    "@supabase/supabase-js": "^2.104.0",
+    "clsx": "^2.1.1",
+    "gray-matter": "^4.0.3",
     "next": "15.3.6",
+    "next-auth": "^4.24.11",
+    "next-mdx-remote": "^6.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "next-auth": "^4.24.11",
-    "stripe": "^16.0.0",
-    "@stripe/stripe-js": "^4.0.0",
-    "next-mdx-remote": "^6.0.0",
-    "gray-matter": "^4.0.3",
-    "clsx": "^2.1.1"
+    "resend": "^6.12.2",
+    "stripe": "^16.0.0"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4"
+    "tailwindcss": "^4",
+    "typescript": "^5"
   }
 }
