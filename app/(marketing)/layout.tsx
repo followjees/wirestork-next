@@ -36,10 +36,10 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
           {/* Nav columns */}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr", gap: 40, marginBottom: 48 }}>
             {[
-              { heading: "Company", links: [["About", "/lawyers-in-uae"], ["Our technology", "/our-technology"], ["Career", "/careers"], ["Become a Partner", "/partners"], ["Join our attorney network", "/attorney-network"], ["Reach Us", "/reach-us"]] },
+              { heading: "Company", links: [["About", "/about-us"], ["Our technology", "/our-technology"], ["Career", "/careers"], ["Become a Partner", "/partners"], ["Join our attorney network", "/attorney-network"], ["Reach Us", "/reach-us"]] },
               { heading: "Services", links: [["Travel Ban Check", "/travel-ban-uae-check"], ["Police and Courts", "/uae-court-police-case-checking"], ["Labour Ban Check", "/labor-ban-check"], ["Background Verification", "/background-checks-gcc"], ["Travel Ban Appeal", "/remove-travel-ban-in-uae"], ["Lawyer on call", "/online-lawyer-consultation"]] },
               { heading: "For Business", links: [["Background Verification", "/employee-check"], ["Debt Collection", "/debt-collection-agency"], ["Contract review", "/legal-document-review"], ["Company Formations", "/uae-business-formation"], ["Vendor Verification", "/client-credit-check"], ["Client Verification", "/client-credit-check"]] },
-              { heading: "Legal", links: [["Privacy Policy", "/privacy"], ["Data retention Policy", "/data-retention"], ["Terms of service", "/terms-of-service"], ["Refund Policy", "/refunds-and-cancellations"], ["Partner Agreement", "/partners"]] },
+              { heading: "Legal", links: [["Privacy Policy", "/privacy"], ["Data retention Policy", "/data-retention"], ["Terms of service", "/terms-of-service"], ["Refund Policy", "/refunds-and-cancellations"], ["Partner Agreement", "/partner-agreement"]] },
               { heading: "Security", links: [] as [string, string][] },
             ].map((col) => (
               <div key={col.heading}>
