@@ -3,6 +3,10 @@ import { getAllPosts, getPostBySlug } from "@/lib/wordpress/client";
 import { postToMetadata, buildArticleSchema } from "@/lib/wordpress/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getAllPosts as getAllLocalPosts, getPost as getLocalPost } from "@/lib/posts";
+import { getAuthorForSlug } from "@/lib/authors";
+import { AuthorBox } from "@/components/blog/AuthorBox";
+import { NewsletterBox } from "@/components/blog/NewsletterBox";
+import { NextPosts } from "@/components/blog/NextPosts";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -37,11 +41,19 @@ export default async function BlogPostPage({ params }: Props) {
     const readTime = Math.ceil(wordCount / 200);
     const featuredImg = wpPost._embedded?.["wp:featuredmedia"]?.[0]?.source_url;
 
-    // Related posts
     const allWpPosts = await getAllPosts(10).catch(() => []);
-    const related = allWpPosts
+    const nextPostItems = allWpPosts
       .filter((p) => p.slug !== slug)
-      .slice(0, 3);
+      .slice(0, 3)
+      .map((p) => ({
+        slug: p.slug,
+        title: p.title.rendered.replace(/<[^>]+>/g, ""),
+        excerpt: p.excerpt.rendered.replace(/<[^>]+>/g, "").slice(0, 120),
+        date: new Date(p.date).toLocaleDateString("en-AE", { year: "numeric", month: "short", day: "numeric" }),
+        categories: p._embedded?.["wp:term"]?.[0]?.map((t: { name: string }) => t.name) ?? [],
+      }));
+
+    const author = getAuthorForSlug(slug);
 
     return (
       <>
@@ -84,36 +96,16 @@ export default async function BlogPostPage({ params }: Props) {
                 className="prose"
                 dangerouslySetInnerHTML={{ __html: wpPost.content.rendered }}
               />
+              <AuthorBox author={author} />
+              <NewsletterBox />
+              {nextPostItems.length > 0 && (
+                <NextPosts posts={nextPostItems} currentSlug={slug} />
+              )}
             </article>
             <BlogSidebar />
           </div>
         </section>
 
-        {/* Related */}
-        {related.length > 0 && (
-          <section className="section-sm" style={{ background: "var(--canvas)" }}>
-            <div className="container">
-              <h2 style={{ fontWeight: 700, fontSize: 24, marginBottom: 24 }}>Related articles</h2>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
-                {related.map((p) => {
-                  const cats = p._embedded?.["wp:term"]?.[0]?.map((t) => t.name) ?? [];
-                  return (
-                    <Link key={p.slug} href={`/blog/${p.slug}`} style={{ textDecoration: "none" }}>
-                      <div className="card card-hover" style={{ padding: 20 }}>
-                        {cats[0] && <div className="badge badge-brand" style={{ marginBottom: 8 }}>{cats[0]}</div>}
-                        <div
-                          style={{ fontWeight: 600, fontSize: 15, marginBottom: 6, color: "var(--ink)" }}
-                          dangerouslySetInnerHTML={{ __html: p.title.rendered }}
-                        />
-                        <div style={{ fontSize: 12, color: "var(--brand)" }}>Read →</div>
-                      </div>
-                    </Link>
-                  );
-                })}
-              </div>
-            </div>
-          </section>
-        )}
       </>
     );
   }
@@ -123,7 +115,17 @@ export default async function BlogPostPage({ params }: Props) {
   if (!post) notFound();
 
   const allPosts = await getAllLocalPosts();
-  const related = allPosts.filter((p) => p.slug !== slug && p.categories.some((c) => post.categories.includes(c))).slice(0, 3);
+  const localAuthor = getAuthorForSlug(slug);
+  const nextLocalItems = allPosts
+    .filter((p) => p.slug !== slug)
+    .slice(0, 3)
+    .map((p) => ({
+      slug: p.slug,
+      title: p.title,
+      excerpt: p.excerpt,
+      date: p.date,
+      categories: p.categories,
+    }));
 
   return (
     <>
@@ -154,29 +156,16 @@ export default async function BlogPostPage({ params }: Props) {
                 }} />
               );
             })}
+            <AuthorBox author={localAuthor} />
+            <NewsletterBox />
+            {nextLocalItems.length > 0 && (
+              <NextPosts posts={nextLocalItems} currentSlug={slug} />
+            )}
           </article>
           <BlogSidebar />
         </div>
       </section>
 
-      {related.length > 0 && (
-        <section className="section-sm" style={{ background: "var(--canvas)" }}>
-          <div className="container">
-            <h2 style={{ fontWeight: 700, fontSize: 24, marginBottom: 24 }}>Related articles</h2>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
-              {related.map((p) => (
-                <Link key={p.slug} href={`/blog/${p.slug}`} style={{ textDecoration: "none" }}>
-                  <div className="card card-hover" style={{ padding: 20 }}>
-                    {p.categories[0] && <div className="badge badge-brand" style={{ marginBottom: 8 }}>{p.categories[0]}</div>}
-                    <div style={{ fontWeight: 600, fontSize: 15, marginBottom: 6, color: "var(--ink)" }}>{p.title}</div>
-                    <div style={{ fontSize: 12, color: "var(--brand)" }}>Read →</div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
     </>
   );
 }
