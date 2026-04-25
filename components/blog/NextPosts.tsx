@@ -1,3 +1,4 @@
+"use client";
 // components/blog/NextPosts.tsx
 import Link from "next/link";
 import { getAuthorForSlug } from "@/lib/authors";
